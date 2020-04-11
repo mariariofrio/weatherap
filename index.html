@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherApp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="text-center">Weather Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" id="input" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-info my-2 my-sm-0" id="search" type="submit">Search</button>
+                        </div>
+                        <br>
+                        <div class="list-group  p-3 my-3" id="list" role="tablist">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class=" col-6 col-sm-8 ">
+                <div class="border row">
+                    <div class="col-12">
+
+                        <h1 class="weather details"> <span id="city">Broccoli</span> <span id="date"></span></h1>
+                        <p>Temperature: <span id="temp"></span>*F</p>
+                        
+                        <p>Humidity <span id="humd"></span>%</p>
+                       
+                        <p>Wind Speed <span id="wspd"></span>mph</p>
+                       
+                        <p>UV Index <span id="uvindex"></span></p>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="Forcast">
+                            <h2>5-Day Forcast: </h2>
+                            <div class="row" id="forecast"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+       
+
+    <script src="jscript.js"></script>
+</body>
+
+</html>
