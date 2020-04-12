@@ -1,4 +1,6 @@
-
+body {
+    overflow: auto;
+}
 
 .jumbotron {
     background-color: aqua;
@@ -8,16 +10,6 @@
     font-style: italic;
     color: rgb(43, 39, 39);
 }
-.border {
-    
-    border-right-style:initial !important;
-    border-top: black;
-    border-bottom: black;
-    left: 10%;
-    
-    height: 50%;
-    padding: 10px;
-}
-.Forcast {
-    
+input {
+    overflow: auto;
 }

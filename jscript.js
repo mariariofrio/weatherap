@@ -1,17 +1,28 @@
 const APIKEY = '2341174992ef15f8815d760242c3e462';
 
-var searchhistory = JSON.parse(localStorage.getItem("weatherApp"))
-var city=searchhistory[0]
+var searchhistory =JSON.parse(localStorage.getItem("weatherApp"))
+var city=searchhistory[0] || "atlanta"
 searchhistory.forEach(function(oldcity){
     let $city= $("<p>").text(oldcity)
-    $city.on("click", $(this))//use $(this)
     $('#list').append($city)
 })
 
-getWeather()
-function getWeather(){
+$("#list p").on("click", function(){
+    var cityValue = $(this).text();
+    getWeather(cityValue);
+    // TODO
+    // Store the text value into a variable
+    // Run an ajax with the value the text to get the new weather
+
+})
+
+getWeather("atlanta")
+function getWeather(city){
 $.get(
-`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKEY}&units=imperial`
+`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKEY}&units=imperial`,
+{headers: {
+    "X-Requested-With":"XMLHttpRequest"
+}}
 ).then(function(response){
     console.log("NOW",response)
     var temp = response.main.temp;
@@ -32,14 +43,17 @@ $.get(
 })
 
 $.get(
-`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}&units=imperial`
+`https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKEY}&units=imperial`,
+{headers: {
+    "X-Requested-With":"XMLHttpRequest"
+}}
 ).then(function(response){
     console.log(response)
     $('#forecast').empty()
     for(let i=7;i<response.list.length;i+=8){
         var forecast= response.list[i]
     var day = moment(forecast.dt, "X");
-    let $card= $('<div class="col-2 p-3 my-3 bg-primary">')
+    let $card= $('<div class="col-2 p-3 my-3 bg-info">')
     let $date= $("<p>").text(day.format("MMM/D/YYYY"))
     var temp = (forecast.main.temp);
     let $temp= $("<p>").text(`Temp: ${temp}`)
@@ -61,9 +75,21 @@ $("#search").on("click", function(event){
     event.preventDefault()
     var input = $('#input').val()
     let oldStorage= JSON.parse(localStorage.getItem("weatherApp"))
-    oldStorage.unshift(input)
-    localStorage.setItem("weatherApp", JSON.stringify(oldStorage))
+    if (!oldStorage.selected(input)) {
+        oldStorage.unshift(input)
+        localStorage.setItem("weatherApp", JSON.stringify(oldStorage))
+    }
     city=input
-    getWeather()
+    getWeather(input)
     console.log(input)
 })
+// $("#search").on("click", function(event){
+//     event.preventDefault()
+//     var input = $('#input').val()
+//     let oldStorage= JSON.parse(localStorage.getItem("weatherApp"))
+//     oldStorage.unshift(input)
+//     localStorage.setItem("weatherApp", JSON.stringify(oldStorage))
+//     city=input
+//     getWeather()
+//     console.log(input)
+// })
