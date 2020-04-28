@@ -1,4 +1,5 @@
 const APIKEY = '2341174992ef15f8815d760242c3e462';
+localStorage.setItem('weatherApp',JSON.stringify([]) )
 
 var searchhistory =JSON.parse(localStorage.getItem("weatherApp"))
 console.log(searchhistory)
